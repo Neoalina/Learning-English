@@ -1,0 +1,25 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: $green-light;
+    width: 100%;
+}
+
+.header__menu a {
+    margin-left: 20px;
+    text-decoration: none;
+    color: #000;
+}
+
+a {
+    padding-left: 20px;
+    padding-right: 20px;
+
+    &:hover {
+        border: 1px solid $green;
+        border-radius: 10px;
+        background-color: $green-lighter;
+    }
+}
