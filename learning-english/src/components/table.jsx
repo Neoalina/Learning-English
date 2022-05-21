@@ -23,7 +23,7 @@ function Table(isChecked) {
 
                     {words.map((word) =>
 
-                        <Row english={word.english} transcription={word.transcription} russian={word.russian} tags={word.tags} isEdit={false} />
+                        <Row english={word.english} transcription={word.transcription} russian={word.russian} tags={word.tags} isEdit={false} opened={false} />
                         // < Row english={<input type="text" value={word.english} />} transcription={<input type="text" value={word.transcription} />} russian={<input type="text" value={word.russian} />} tags={<input type="text" value={word.tags} />} />
                     )}
                 </tbody>
