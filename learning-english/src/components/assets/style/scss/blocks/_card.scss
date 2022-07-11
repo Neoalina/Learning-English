@@ -3,19 +3,39 @@
     border-radius: 10px;
     width: 200px;
     height: 300px;
-    position: relative;
-    left: 40%;
+    // margin-top: 200px;
+    // margin-bottom: 200px;
+    // left: 40%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: $green-light;
+}
 
+.cardPosition {
+    display: flex;
+    justify-content: center;
+    margin-top: 150px;
+    margin-bottom: 20px;
+}
 
+.slider {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 100px;
 }
 
 .card-englishword {
     font-size: 30px;
+    color: $green;
+
+}
+
+.card-russianword {
+    font-size: 24px;
+    color: $green;
 }
 
 .card-button {
@@ -25,7 +45,29 @@
 
     &:hover {
         border: 1px solid $green;
-
         background-color: $green-lighter;
     }
+
+}
+
+.cardlist {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.round-button {
+    border-radius: 50px;
+    height: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+
+    &:hover {
+        border: 1px solid $green;
+        background-color: $green-lighter;
+    }
+}
+
+.pagination {
+    font-size: 18px;
 }

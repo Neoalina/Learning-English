@@ -1,10 +1,26 @@
+import React, { useState } from 'react';
 import './assets/style/scss/main.scss';
-import Row from './row';
 import words from './words.json';
+import Row from './row';
+import RowInput from './rowInput';
 
+function Table() {
+    let randomIndex = Math.round((Math.random() * words.length));
 
+    const [wordsCollection, setWordsCollection] = useState(words);
+    const [addWord, setAddWord] = useState(false);
+    const [cardIndex, setCardIndex] = useState(randomIndex);
+    const [newWord, setNewWord] = useState({});
 
-function Table(isChecked) {
+    const handleAddWord = () => {
+        setAddWord(true);
+    }
+
+    const handleDelete = () => {
+        const array = [...wordsCollection];
+        array.splice(cardIndex, 1);
+        setWordsCollection(array);
+    }
 
     return (
         <div className='table'>
@@ -19,15 +35,25 @@ function Table(isChecked) {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* <Row english={<input type="text" />} transcription={<input type="text" />} russian={<input type="text" />} tags={<input type="text" />} /> */}
-
                     {words.map((word) =>
-
-                        <Row english={word.english} transcription={word.transcription} russian={word.russian} tags={word.tags} isEdit={false} opened={false} />
-                        // < Row english={<input type="text" value={word.english} />} transcription={<input type="text" value={word.transcription} />} russian={<input type="text" value={word.russian} />} tags={<input type="text" value={word.tags} />} />
+                        <Row
+                            key={word.id}
+                            english={word.english}
+                            transcription={word.transcription}
+                            russian={word.russian}
+                            tags={word.tags}
+                            isEdit={false}
+                            opened={false}
+                            isDelete={handleDelete}
+                        />
                     )}
                 </tbody>
             </table>
+            <div>
+                <button onClick={handleAddWord}>Add Word</button>
+                {addWord ? <RowInput setAddWord={setAddWord} /> : null}
+            </div>
+
         </div>
     )
 }

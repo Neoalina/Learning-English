@@ -1,16 +1,19 @@
 import './assets/style/scss/main.scss';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Table from './table';
-import Row from './row';
-import Card from './card'
+import CardList from './cardList';
+
 
 function Main() {
     return (
         <div>
-            <Table />
-            <Card isPlay={true} />
-
+            <Routes>
+                <Route path='/' element={<Table />}>
+                    <Route path='/table' />
+                </Route>
+                <Route path='/cardList' element={<CardList />} />
+            </Routes>
         </div>
-
     )
 }
 export default Main;

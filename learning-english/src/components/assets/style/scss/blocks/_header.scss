@@ -7,19 +7,21 @@
     width: 100%;
 }
 
-.header__menu a {
+.link {
+    padding-left: 20px;
+    padding-right: 20px;
     margin-left: 20px;
     text-decoration: none;
     color: #000;
-}
-
-a {
-    padding-left: 20px;
-    padding-right: 20px;
 
     &:hover {
         border: 1px solid $green;
         border-radius: 10px;
         background-color: $green-lighter;
     }
+}
+
+.header__title {
+    text-decoration: none;
+    color: #000;
 }

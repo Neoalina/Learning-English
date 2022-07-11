@@ -1,24 +1,22 @@
-import words from './words.json';
 import './assets/style/scss/main.scss'
+import React, { useState } from 'react';
 
 function Card(props) {
-    // let actionItem;
-    // if (props.isPlay) {
-    //     // actionItem = <div className="card-russianword">{words[0].russian}</div>;
-    //     actionItem = <button className="card-button">check</button>;
-    // } else {
-    //     // actionItem = <button className="card-button">Проверить</button>;
-    //     actionItem = <div className="card-russianword">{words[0].russian}</div>;
-    // }
+    const [showTranslate, setShowTranslate] = useState(false);
+
+    const handleShowTranslate = () => {
+        setShowTranslate(!showTranslate);
+        props.isCounter();
+    };
+
     return (
         <div className="card-body">
-            <div className="card-englishword">{words[0].english}</div>
-            <div className="card-transcription">{words[0].transcription}</div>
-            {props.isPlay
-                ? <div className="card-russianword">{words[0].russian}</div>
-                : <button className="card-button">check</button>
+            <div className="card-englishword">{props.english}</div>
+            <div className="card-transcription">{props.transcription}</div>
+            {showTranslate
+                ? <div className="card-russianword">{props.russian}</div>
+                : <button className="card-button" onClick={handleShowTranslate}>Проверить</button>
             }
-
         </div>)
 }
 export default Card;
