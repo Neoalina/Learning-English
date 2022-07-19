@@ -1,16 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './assets/style/scss/main.scss';
-import words from './words.json';
+// import words from './words.json';
 import Row from './row';
 import RowInput from './rowInput';
+import { WordsContext } from '../context/wordsContext';
+
 
 function Table() {
     let randomIndex = Math.round((Math.random() * words.length));
 
+    const { words, loading, error, editWords, deleteWords } = useContext(WordsContext);
     const [wordsCollection, setWordsCollection] = useState(words);
     const [addWord, setAddWord] = useState(false);
     const [cardIndex, setCardIndex] = useState(randomIndex);
     const [newWord, setNewWord] = useState({});
+    // const [words, setWords] = useState([]);
+
+    // useEffect(() => {
+    //     fetch('http://itgirlschool.justmakeit.ru/api/words')
+    //         .then((response) => response.json())
+    //         .then((response) => setWords({ words: response }))
+    //         .catch((errors) => console.log('error', errors));
+    // }, []);
 
     const handleAddWord = () => {
         setAddWord(true);
@@ -21,6 +32,7 @@ function Table() {
         array.splice(cardIndex, 1);
         setWordsCollection(array);
     }
+
 
     return (
         <div className='table'>
@@ -35,6 +47,20 @@ function Table() {
                     </tr>
                 </thead>
                 <tbody>
+                    {/* <WordsContext.Consumer>
+                        {words => words.map((word) =>
+                            <Row
+                                key={word.id}
+                                english={word.english}
+                                transcription={word.transcription}
+                                russian={word.russian}
+                                tags={word.tags}
+                                isEdit={false}
+                                opened={false}
+                                isDelete={handleDelete}
+                            />
+                        )}
+                    </WordsContext.Consumer> */}
                     {words.map((word) =>
                         <Row
                             key={word.id}

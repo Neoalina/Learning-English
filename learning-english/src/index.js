@@ -4,11 +4,15 @@ import { BrowserRouter} from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import words from './components/words.json';
 
+const WordsContext = React.createContext();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-    <App />
+    <WordsContext.Provider words={words}>
+      <App />
+    </WordsContext.Provider>
   </BrowserRouter>
 );
 
