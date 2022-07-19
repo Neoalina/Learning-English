@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 function Row(props) {
     const [opened, setOpened] = useState(false);
     const [fixed, setFixed] = useState(props);
+    const [words, setWords] = useState([]);
+
 
     const handleChange = (event) => {
         setFixed({
@@ -18,6 +20,15 @@ function Row(props) {
 
     const handleCancel = () => {
         setOpened(!opened);
+    };
+    const handleSave = (word) => {
+        fetch(`http://itgirlschool.justmakeit.ru/api/words/${word.id}/update`, {
+            method: 'POST',
+            body: JSON.stringify(word),
+        })
+            .then((response) => response.json())
+            .then((response) => { setWords(response); })
+            .catch((errors) => console.log('error', errors));
     };
 
     return (
@@ -39,7 +50,7 @@ function Row(props) {
                     <td>{<input data-name={'russian'} type="text" value={fixed.russian} onChange={handleChange} />}</td>
                     <td>{<input data-name={'tags'} type="text" value={fixed.tags} onChange={handleChange} />}</td>
                     <td className='table__title-item'>
-                        <button>Save</button>
+                        <button onClick={handleSave}>Save</button>
                         <button onClick={handleCancel}>Cancel</button>
                     </td>
                 </tr >
