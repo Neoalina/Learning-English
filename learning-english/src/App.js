@@ -1,10 +1,28 @@
+import React, {useState, useEffect} from 'react';
+import {observer, inject} from 'mobx-react';
 import './App.css';
 import Header from './components/header';
 import Main from './components/main';
 import Footer from './components/footer';
+import { inject, observer } from 'mobx-react';
 
 
-function App() {
+function App({wordStore}) {
+  const [newWord, setNewWord] = useState('');
+
+  useEffect( () => {
+    loadData();
+}, []);
+
+  const addNewWord = () => {
+    if (!newWord) return;
+    wordStore.add(newWord);
+    setNewWord('');
+  };
+  const deleteWord = (index) => {
+    wordStore.remove(index);
+  }
+
   return (
     <div className="App">
       <Header/>
@@ -14,4 +32,4 @@ function App() {
   );
 }
 
-export default App;
+export default inject(["wordStore"])(observer(App));

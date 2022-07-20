@@ -3,6 +3,7 @@ import './assets/style/scss/main.scss';
 import words from './words.json';
 import Row from './row';
 import RowInput from './rowInput';
+import WordStore from '../stores/words';
 
 function Table() {
     let randomIndex = Math.round((Math.random() * words.length));
@@ -35,7 +36,7 @@ function Table() {
                     </tr>
                 </thead>
                 <tbody>
-                    {words.map((word) =>
+                    {wordStore.words.map((word, index) =>
                         <Row
                             key={word.id}
                             english={word.english}
