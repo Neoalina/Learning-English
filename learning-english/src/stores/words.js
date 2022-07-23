@@ -1,4 +1,4 @@
-import { makeAutoObservable, runInAction } from "mobx";
+import { makeAutoObservable, runInAction, values } from "mobx";
 
 export default class WordStore {
     words=[];
@@ -19,7 +19,8 @@ export default class WordStore {
         fetch('http://itgirlschool.justmakeit.ru/api/words')
             .then((response) => response.json())
             .then((response) => {
-                words(response);
+                this.words=response;
+                this.isLoaded=true; 
                 })
             .catch((errors) => setError(errors))
             .finally(() => {
@@ -33,8 +34,66 @@ export default class WordStore {
         });
     };
 
-    add=(word) => {
-        this.words.push(word);
+    add=(value) => {
+        this.isLoading=true;
+        const newWord = {
+            english: value.english,
+            russian: value.russian,
+            transcription: value.transcription,
+            tags:[],
+        };
+        fetch('/api/word/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            },
+            body: JSON.stringify({newWord}),
+        })
+        .then((response)=> {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Something went wrong')
+            }
+        })
+        .then(() => {
+            this.words.push(newWord);
+            this.isLoaded=true;
+        })
+        .catch(() => {
+            this.isLoading=false;
+        })
+    };
+
+    update=() => {
+        this.isLoading=true;
+        const newWord = {
+            english: value.english,
+            russian: value.russian,
+            transcription: value.transcription,
+            tags:[],
+        };
+        fetch(`/api/word/${id}/update`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            },
+            body: JSON.stringify({newWord}),
+        })
+        .then((response)=> {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Something went wrong')
+            }
+        })
+        .then(() => {
+            this.words.push(newWord);
+            this.isLoaded=true;
+        })
+        .catch(() => {
+            this.isLoading=false;
+        })
     };
 
     remove = (index) => {

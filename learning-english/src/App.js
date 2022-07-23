@@ -4,7 +4,7 @@ import './App.css';
 import Header from './components/header';
 import Main from './components/main';
 import Footer from './components/footer';
-import { inject, observer } from 'mobx-react';
+
 
 
 function App({wordStore}) {
