@@ -10,7 +10,7 @@ const WordsContext = React.createContext();
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-    <WordsContext.Provider words={words}>
+    <WordsContext.Provider value={words}>
       <App />
     </WordsContext.Provider>
   </BrowserRouter>

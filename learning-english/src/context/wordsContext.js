@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+
 const WordsContext = React.createContext();
 
 function WordsContextProvider(props) {

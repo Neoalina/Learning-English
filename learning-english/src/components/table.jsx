@@ -7,12 +7,13 @@ import { WordsContext } from '../context/wordsContext';
 
 
 function Table() {
-    let randomIndex = Math.round((Math.random() * words.length));
+
+    // let randomIndex = Math.round((Math.random() * words.length));
 
     const { words, loading, error, editWords, deleteWords } = useContext(WordsContext);
     const [wordsCollection, setWordsCollection] = useState(words);
     const [addWord, setAddWord] = useState(false);
-    const [cardIndex, setCardIndex] = useState(randomIndex);
+    const [cardIndex, setCardIndex] = useState(0);
     const [newWord, setNewWord] = useState({});
     // const [words, setWords] = useState([]);
 
@@ -47,8 +48,8 @@ function Table() {
                     </tr>
                 </thead>
                 <tbody>
-                    {/* <WordsContext.Consumer>
-                        {words => words.map((word) =>
+                    <WordsContext.Consumer>
+                        {value => words.map((word) =>
                             <Row
                                 key={word.id}
                                 english={word.english}
@@ -60,8 +61,8 @@ function Table() {
                                 isDelete={handleDelete}
                             />
                         )}
-                    </WordsContext.Consumer> */}
-                    {words.map((word) =>
+                    </WordsContext.Consumer>
+                    {/* {words.map((word) =>
                         <Row
                             key={word.id}
                             english={word.english}
@@ -72,7 +73,7 @@ function Table() {
                             opened={false}
                             isDelete={handleDelete}
                         />
-                    )}
+                    )} */}
                 </tbody>
             </table>
             <div>
